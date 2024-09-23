@@ -1,7 +1,7 @@
 const ClockLoader = () => {
   return (
-    <div className="fixed top-0 left-0 w-screen h-screen flex items-center justify-center">
-      <div className="bg-white rounded-3xl p-5 shadow-[0_3px_10px_rgb(0,0,0,0.2)]">
+    <div className="fixed top-0 left-0 w-screen h-screen flex items-center justify-center z-50">
+      <div className="bg-white rounded-3xl p-5 shadow-[0_3px_10px_rgb(0,0,0,0.2)] z-50">
         <div className="flex justify-center items-center gap-2">
           <svg
             width="35"

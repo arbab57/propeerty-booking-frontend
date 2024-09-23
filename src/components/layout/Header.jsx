@@ -1,21 +1,37 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaBars, FaUser } from "react-icons/fa";
 import MobileNav from "./mobileNav";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Modal from "./modal";
 import Clock from "./clock";
 import Dropdown from "./Dropdown";
 import EditorMobileNav from "./EditorMobileNav";
+import PatchData from "../../hooks/PatchData";
 
 const Header = () => {
   const [showNav, setshowNav] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showDropdown, setshowDropdown] = useState(false);
+  const navigate = useNavigate();
 
   const [role, setRole] = useState(
     JSON.parse(localStorage.getItem("role"))?.role
   );
+  const baseURL = import.meta.env.VITE_BASE_URL;
 
+  useEffect(() => {
+    const check = async () => {
+      const [response, resJson] = await PatchData(
+        `${baseURL}/admins/check`,
+        "GET"
+      );
+      console.log(resJson)
+      if (!response.ok) {
+        navigate("/login");
+      }
+    };
+    check();
+  });
   const close = () => {
     setshowDropdown(false);
   };
